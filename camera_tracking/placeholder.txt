@@ -1,0 +1,1 @@
+Delete this file when other files have been pasted into camera_tracking
