@@ -144,7 +144,7 @@ objpoints = [] #3d point in real world space
 imgpoints = [] #2d points in image plane.
 
 
-images = glob.glob(r'C:\Users\OlgaCampanyDalmas\Documents\Code\Camera calibration\Cheesboard photos\*.jpg') #in order to open all the images from the folder
+images = glob.glob(r'Cheesboard photos\*.jpg') #in order to open all the images from the folder
 
 for image in images:
     img = cv.imread(image)
@@ -308,7 +308,7 @@ cube_points_3d = np.float32([[0, 0, 0], [4, 0, 0], [4, 4, 0], [0, 4, 0],
 axis = np.float32([[5,0,0], [0,5,0], [0,0,-5]])
 
 # Process each image to draw a cube
-for fname in glob.glob(r'C:\Users\OlgaCampanyDalmas\Documents\Code\Cheesboard photos\*.jpg'):
+for fname in glob.glob(r'\Cheesboard photos\*.jpg'):
     img = cv.imread(fname)
     gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
     

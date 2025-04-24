@@ -4,8 +4,8 @@ import glob
 
 
 #Load camera matrix and distortion coefficients from our training data
-cameraMatrix = np.load(r'C:\Users\OlgaCampanyDalmas\Documents\Code\Camera calibration\cameraMatrix.pkl', allow_pickle=True)
-dist = np.load(r'C:\Users\OlgaCampanyDalmas\Documents\Code\Camera calibration\dist.pkl', allow_pickle=True)
+cameraMatrix = np.load(r'cameraMatrix.pkl', allow_pickle=True)
+dist = np.load(r'dist.pkl', allow_pickle=True)
 
 #CUBE+PROJECTION DRAWING
 
@@ -117,7 +117,7 @@ if use_webcam.lower() == 'yes':
     cv.destroyAllWindows()
     
 else:
-   test_image_dir = r'C:\Users\OlgaCampanyDalmas\Documents\Code\Camera calibration\Test images'
+   test_image_dir = r'Test images'
    test_images = glob.glob(test_image_dir + r'\*.png')
    print("Test images found:", test_images)
    
