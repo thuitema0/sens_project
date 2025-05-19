@@ -7,7 +7,7 @@ face_mesh = mp_face_mesh.FaceMesh()
 
 
 #image = cv2.imread('person.jpg')
-image = cv2.imread('person.png')
+image = cv2.imread('person.jpg')
 height, width, _ = image.shape
 print("Height, width", height, width)
 
@@ -32,13 +32,23 @@ landmark_names = {
 
 #Facial landmarks
 result = face_mesh.process(image)
-for facial_landmarks in result.multi_face_landmarks:
-    for idx, lm in enumerate(facial_landmarks.landmark):
-        if idx in landmark_names:
+# for facial_landmarks in result.multi_face_landmarks:
+#     for idx, lm in enumerate(facial_landmarks.landmark):
+#         if idx in landmark_names:
+#             h, w, _ = image.shape
+#             x, y = int(lm.x * w), int(lm.y * h)
+#             cv2.circle(image, (x, y), 2, (0, 255, 0), -1)
+#             #cv2.putText(image, landmark_names[idx], (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 0, 0), 1)
+
+
+if result.multi_face_landmarks:
+    for facial_landmarks in result.multi_face_landmarks:
+        for idx, lm in enumerate(facial_landmarks.landmark):
             h, w, _ = image.shape
             x, y = int(lm.x * w), int(lm.y * h)
-            cv2.circle(image, (x, y), 2, (0, 255, 0), -1)
-            cv2.putText(image, landmark_names[idx], (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 0, 0), 1)
+            print('Landmark:', idx, "  2D Coordinates: ", x, " ", y )
+            cv2.circle(image, (x, y), 1, (0, 0, 0), -1)  # smaller green dot for clarity
+
 
 cv2.imshow("Image", image)
 cv2.waitKey(0)
