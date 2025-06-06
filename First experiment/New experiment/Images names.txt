@@ -1,0 +1,15 @@
+intrinsics.mp4 - Video intrinsics
+extrinsics - extrinsics foto
+1 - chess al aldo de extrinsics foto
+2- chess wall 
+3- foto 50 wall chess
+4- chessmanquin wall
+5- maniquin1
+6- maniquin2
+7- maniquin3
+8- maniquin4
+9- maniquin5
+face - video moving manikin
+LR- video lr chess
+50 -video 0 50 chess
+olgaface - video olga
