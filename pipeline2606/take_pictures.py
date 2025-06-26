@@ -1,7 +1,20 @@
 import cv2
 import os
 
-# Output directory
+# Configuration for camera parameters
+def configure_camera(cap, focus=100, exposure=-7, gain=0):
+    # Turn off autofocus, set focus
+    cap.set(cv2.CAP_PROP_AUTOFOCUS, 0)
+    cap.set(cv2.CAP_PROP_FOCUS, focus)
+    # Switch to manual exposure and set it
+    cap.set(cv2.CAP_PROP_AUTO_EXPOSURE, 1)  # 1 = manual mode on many backends
+    cap.set(cv2.CAP_PROP_EXPOSURE, exposure)
+    # Set gain
+    cap.set(cv2.CAP_PROP_GAIN, gain)
+
+# === MAIN ===
+
+# Create output folder
 out_dir = "output"
 os.makedirs(out_dir, exist_ok=True)
 
@@ -12,6 +25,10 @@ if not cam1.isOpened() or not cam2.isOpened():
     print("Error: Could not open one or both cameras.")
     exit()
 
+# Apply your custom configs
+configure_camera(cam1, focus=150, exposure=-5, gain=0)
+configure_camera(cam2, focus=150, exposure=-5, gain=0)
+
 frame_idx = 0
 
 while True:
@@ -21,22 +38,20 @@ while True:
         print("Error: Failed to grab frames.")
         break
 
-    # Show the live feeds
+    # Show live feeds
     cv2.imshow('Camera 1', frame1)
     cv2.imshow('Camera 2', frame2)
 
     key = cv2.waitKey(1) & 0xFF
-
     if key == ord('q'):
-        # Save both frames
+        # Save left and right frames
         fname1 = os.path.join(out_dir, f"frame_{frame_idx:04d}_left.png")
         fname2 = os.path.join(out_dir, f"frame_{frame_idx:04d}_right.png")
         cv2.imwrite(fname1, frame1)
         cv2.imwrite(fname2, frame2)
         print(f"Saved {fname1} and {fname2}")
         frame_idx += 1
-
-    elif key == 27:  # ESC key
+    elif key == 27:  # ESC
         print("Exiting.")
         break
 
